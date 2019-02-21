@@ -1,13 +1,63 @@
 package com.example.quizapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Spinner spinner_category = findViewById(R.id.spinner_category);
+        ArrayAdapter<CharSequence> adapter_category = ArrayAdapter.createFromResource(this, R.array.Category, android.R.layout.simple_spinner_item);
+        adapter_category.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_category.setAdapter(adapter_category);
+        spinner_category.setOnItemSelectedListener(this);
+
+        Spinner spinner_difficulty = findViewById(R.id.spinner_difficulty);
+        ArrayAdapter<CharSequence> adapter_difficulty = ArrayAdapter.createFromResource(this, R.array.Difficulty, android.R.layout.simple_spinner_item);
+        adapter_difficulty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_difficulty.setAdapter(adapter_difficulty);
+        spinner_difficulty.setOnItemSelectedListener(this);
+
+        setupLaunchButton();
+    }
+
+    private void setupLaunchButton()
+    {
+        Button start_quiz = (Button) findViewById(R.id.start_quiz);
+        start_quiz.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v)
+            {
+                // Launch the second activity
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+
+                startActivity(intent);
+            }
+
+        });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

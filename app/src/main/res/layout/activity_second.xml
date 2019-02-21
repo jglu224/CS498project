@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SecondActivity">
+
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/radio_group"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="16dp"
+        android:text="Here is where the question will display!"
+        android:textAlignment="center"
+        android:textColor="#4B4B4B"
+        android:textSize="35sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="223dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <RadioButton
+            android:id="@+id/button1"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/question"
+            android:layout_centerHorizontal="true"
+            android:text="@string/answer1" />
+
+        <RadioButton
+            android:id="@+id/button2"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button1"
+            android:layout_centerHorizontal="true"
+            android:text="@string/answer2" />
+
+        <RadioButton
+            android:id="@+id/button3"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button2"
+            android:layout_centerHorizontal="true"
+            android:text="@string/answer3" />
+
+        <RadioButton
+            android:id="@+id/button4"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button3"
+            android:layout_centerHorizontal="true"
+            android:text="@string/answer4" />
+
+    </RadioGroup>
+
+
+</android.support.constraint.ConstraintLayout>

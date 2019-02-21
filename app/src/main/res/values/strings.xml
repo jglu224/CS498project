@@ -1,7 +1,45 @@
 <resources>
-    <string name="app_name">Quiz</string>
+    <string name="app_name">Trivia App</string>
+    <string name="trivia_app_name">LET\'S PLAY TRIVIA!</string>
+    <string name="select_category">Select Category</string>
+    <string name="select_difficulty">Select Difficulty</string>
+    <string name="start_button">Start</string>
     <string name="answer1">Answer 1</string>
     <string name="answer2">Answer 2</string>
     <string name="answer3">Answer 3</string>
     <string name="answer4">Answer 4</string>
+
+    <string-array name="Category">
+        <item>General Knowledge</item>
+        <item>Books</item>
+        <item>Film</item>
+        <item>Music</item>
+        <item>Musicals &amp; Theatres</item>
+        <item>Television</item>
+        <item>Video Games</item>
+        <item>Board Games</item>
+        <item>Science &amp; Nature</item>
+        <item>Computers</item>
+        <item>Mathematics</item>
+        <item>Mythology</item>
+        <item>Sports</item>
+        <item>Geography</item>
+        <item>History</item>
+        <item>Politics</item>
+        <item>Art</item>
+        <item>Celebrities</item>
+        <item>Animals</item>
+        <item>Vehicles</item>
+        <item>Comics</item>
+        <item>Gadgets</item>
+        <item>Japanese Anime &amp; Manga</item>
+        <item>Cartoon &amp; Animations</item>
+    </string-array>
+
+    <string-array name="Difficulty">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+
 </resources>

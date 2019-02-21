@@ -7,48 +7,66 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-
     <TextView
-        android:id="@+id/question"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/trivia_app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Question!"
+        android:layout_above="@id/select_category"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="91dp"
+        android:text="@string/trivia_app_name"
+        android:textAlignment="center"
         android:textColor="#4B4B4B"
-        android:textSize="35sp"
-        />
+        android:textSize="50sp" />
+
+    <TextView
+        android:id="@+id/select_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/spinner_category"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="53dp"
+        android:text="@string/select_category"
+        android:textAlignment="center"
+        android:textColor="#4B4B4B"
+        android:textSize="35sp" />
+
+    <Spinner
+        android:id="@+id/spinner_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/select_difficulty"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="57dp"
+        android:textAlignment="center"></Spinner>
+
+    <TextView
+        android:id="@+id/select_difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/spinner_difficulty"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="@string/select_difficulty"
+        android:textAlignment="center"
+        android:textColor="#4B4B4B"
+        android:textSize="35sp" />
+
+    <Spinner
+        android:id="@+id/spinner_difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:dropDownWidth="wrap_content"
+        android:textAlignment="center"></Spinner>
 
     <Button
-        android:id="@+id/button1"
-        android:layout_centerHorizontal="true"
-        android:layout_width="96dp"
+        android:id="@+id/start_quiz"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/question"
-        android:text="@string/answer1" />
-
-    <Button
-        android:id="@+id/button2"
+        android:layout_below="@id/spinner_difficulty"
         android:layout_centerHorizontal="true"
-        android:layout_width="96dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/button1"
-        android:text="@string/answer2" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_centerHorizontal="true"
-        android:layout_width="96dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/button2"
-        android:text="@string/answer3" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_centerHorizontal="true"
-        android:layout_width="96dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/button3"
-        android:text="@string/answer4" />
+        android:layout_marginTop="182dp"
+        android:text="@string/start_button" />
 
 </RelativeLayout>
