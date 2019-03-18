@@ -3,6 +3,7 @@ package com.example.quizapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -22,13 +23,44 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ArrayAdapter<CharSequence> adapter_category = ArrayAdapter.createFromResource(this, R.array.Category, android.R.layout.simple_spinner_item);
         adapter_category.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_category.setAdapter(adapter_category);
-        spinner_category.setOnItemSelectedListener(this);
+        //spinner_category.setOnItemSelectedListener(this);
+        //String selectedCategoryNum = "blank";
+        spinner_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                // Stores the user selected category into a string
+                // Will be used later to build URL
+                int categoryIndex = position + 9;
+                String selectedCategoryNum = Integer.toString(categoryIndex);
+                Log.d("Input", selectedCategoryNum);
+
+
+            }
+
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         Spinner spinner_difficulty = findViewById(R.id.spinner_difficulty);
         ArrayAdapter<CharSequence> adapter_difficulty = ArrayAdapter.createFromResource(this, R.array.Difficulty, android.R.layout.simple_spinner_item);
         adapter_difficulty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_difficulty.setAdapter(adapter_difficulty);
         spinner_difficulty.setOnItemSelectedListener(this);
+
+        
+        // Stores user selected difficulty to a variable
+        String selected_difficulty = spinner_difficulty.getSelectedItem().toString();
+        Log.d("Input", selected_difficulty);
+
+        // Stores user selected category to a variable
+        String selected_category = spinner_category.getSelectedItem().toString();
+        Log.d("Input", selected_category);
 
         setupLaunchButton();
     }
