@@ -66,33 +66,37 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        String baseBeginURL = "https://opentdb.com/api.php?amount=10&category=";
-
-        MyApplication application = (MyApplication)getApplication();
-        String selectedCategoryNum = application.getCategory();
-
-        String baseMiddleURL = "&difficulty=";
-
-        String selectedDifficulty = application.getDifficulty();
-
-        String baseEndURL = "&type=multiple";
-
-        String apiURL = baseBeginURL + selectedCategoryNum + baseMiddleURL + selectedDifficulty + baseEndURL;
-
-        Log.d("Input", apiURL);
+        
 
         setupLaunchButton();
     }
 
     private void setupLaunchButton()
     {
+
         Button start_quiz = (Button) findViewById(R.id.start_quiz);
         start_quiz.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v)
             {
+
+                // Builds api URL
+                String baseBeginURL = "https://opentdb.com/api.php?amount=10&category=";
+
+                MyApplication application = (MyApplication)getApplication();
+                String selectedCategoryNum = application.getCategory();
+
+                String baseMiddleURL = "&difficulty=";
+
+                String selectedDifficulty = application.getDifficulty();
+
+                String baseEndURL = "&type=multiple";
+
+                String apiURL = baseBeginURL + selectedCategoryNum + baseMiddleURL + selectedDifficulty + baseEndURL;
+
+                Log.d("Input", apiURL);
+
                 // Launch the second activity
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
 
