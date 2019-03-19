@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
                 while ((line = reader.readLine()) != null) {
                     buffer.append(line+"\n");
-                    Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
+                    Log.d("Input", "> " + line);   //here u ll get whole response...... :-)
 
                 }
 
@@ -196,6 +196,8 @@ public class MainActivity extends AppCompatActivity {
             //txtJson.setText(result);
             MyApplication application = (MyApplication)getApplication();
             String jsonData = application.setJSON(result);
+            //Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            //startActivity(intent);
             Log.d("Input", jsonData);
         }
     }

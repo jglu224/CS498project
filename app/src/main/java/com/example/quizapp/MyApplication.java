@@ -6,7 +6,7 @@ public class MyApplication extends Application{
     private String selectedCategoryNum = "9";
     private String selectedDifficulty = "easy";
     private String apiURL;
-    private String jsonData;
+    private String jsonData = "";
 
     public String getCategory() {
         return selectedCategoryNum;
