@@ -12,17 +12,19 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         Spinner spinner_category = findViewById(R.id.spinner_category);
         ArrayAdapter<CharSequence> adapter_category = ArrayAdapter.createFromResource(this, R.array.Category, android.R.layout.simple_spinner_item);
         adapter_category.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_category.setAdapter(adapter_category);
+
         spinner_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -30,7 +32,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 // Stores the user selected category into a string
                 // Will be used later to build URL
                 int categoryIndex = position + 9;
-                String selectedCategoryNum = Integer.toString(categoryIndex);
+                MyApplication application = (MyApplication)getApplication();
+                String selectedCategoryNum = application.setCategory(Integer.toString(categoryIndex));
                 Log.d("Input", selectedCategoryNum);
 
             }
@@ -52,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                String selectedDifficulty = parent.getItemAtPosition(position).toString();
+                MyApplication application = (MyApplication)getApplication();
+                String selectedDifficulty = application.setDifficulty(parent.getItemAtPosition(position).toString());
                 Log.d("Input", selectedDifficulty);
 
             }
@@ -63,15 +67,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        
-        // Stores user selected difficulty to a variable
-        // Will be used later to create URL
-        String selected_difficulty = spinner_difficulty.getSelectedItem().toString();
-        Log.d("Input", selected_difficulty);
+        String baseBeginURL = "https://opentdb.com/api.php?amount=10&category=";
 
-        // Stores user selected category to a variable
-        String selected_category = spinner_category.getSelectedItem().toString();
-        Log.d("Input", selected_category);
+        MyApplication application = (MyApplication)getApplication();
+        String selectedCategoryNum = application.getCategory();
+
+        String baseMiddleURL = "&difficulty=";
+
+        String selectedDifficulty = application.getDifficulty();
+
+        String baseEndURL = "&type=multiple";
+
+        String apiURL = baseBeginURL + selectedCategoryNum + baseMiddleURL + selectedDifficulty + baseEndURL;
+
+        Log.d("Input", apiURL);
 
         setupLaunchButton();
     }
@@ -93,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
     }
 
-    @Override
+    /*@Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
@@ -102,5 +111,5 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
-    }
+    }*/
 }
