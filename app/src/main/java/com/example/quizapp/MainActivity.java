@@ -120,8 +120,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                 // Launch the second activity
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                startActivity(intent);
+                // Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                // startActivity(intent);
             }
 
         });
@@ -196,9 +196,13 @@ public class MainActivity extends AppCompatActivity {
             //txtJson.setText(result);
             MyApplication application = (MyApplication)getApplication();
             String jsonData = application.setJSON(result);
-            //Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-            //startActivity(intent);
             Log.d("Input", jsonData);
+
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("json_data", jsonData);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }
     }
 }

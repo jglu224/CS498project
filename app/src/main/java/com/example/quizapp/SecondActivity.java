@@ -1,5 +1,6 @@
 package com.example.quizapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,17 +12,34 @@ import java.util.ArrayList;
 
 public class SecondActivity extends AppCompatActivity {
 
-    MyApplication application = (MyApplication)getApplication();
-    String json_data = application.getJSON();
+    //MyApplication application = (MyApplication)getApplication();
+    //String json_data = application.getJSON();
 
-    Parser parser = new Parser(json_data);
+    Bundle extras;
 
-    ArrayList<Question> questions = parser.generate_questions();
+    String json_data;
+
+    Parser parser;
+
+    ArrayList<Question> questions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+
+        extras = getIntent().getExtras();
+
+        if(extras != null) {
+            json_data = extras.getString("json_data");
+            parser = new Parser(json_data);
+        }
+        else
+        {
+            finish();
+        }
+
+        questions = parser.generate_questions();
 
         update_question(0);
     }
