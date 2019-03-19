@@ -1,3 +1,4 @@
+package com.example.quizapp;
 
 import java.lang.String;
 import java.util.*;
@@ -28,5 +29,16 @@ public class Question {
     public String get_question_text() {
 
         return this.text;
+    }
+
+    public ArrayList<String> get_scrambled_answers() {
+
+        ArrayList<String> questions = new ArrayList<>(incorrect_answers);
+
+        questions.add(correct_answer);
+
+        Collections.shuffle(questions);
+
+        return questions;
     }
 }
