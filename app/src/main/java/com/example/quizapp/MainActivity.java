@@ -1,6 +1,10 @@
 package com.example.quizapp;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SyncAdapterType;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,9 +14,21 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+
 public class MainActivity extends AppCompatActivity {
+    ProgressDialog pd;
+    TextView txtJson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 MyApplication application = (MyApplication)getApplication();
-                String selectedDifficulty = application.setDifficulty(parent.getItemAtPosition(position).toString());
+                String selectedDifficulty = application.setDifficulty(parent.getItemAtPosition(position).toString().toLowerCase());
+
                 Log.d("Input", selectedDifficulty);
 
             }
@@ -66,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        
+
 
         setupLaunchButton();
     }
@@ -93,27 +110,90 @@ public class MainActivity extends AppCompatActivity {
 
                 String baseEndURL = "&type=multiple";
 
-                String apiURL = baseBeginURL + selectedCategoryNum + baseMiddleURL + selectedDifficulty + baseEndURL;
+                String apiURL = application.setURL(baseBeginURL + selectedCategoryNum + baseMiddleURL + selectedDifficulty + baseEndURL);
 
                 Log.d("Input", apiURL);
 
+                new JsonTask().execute(apiURL);
+
+                txtJson = (TextView) findViewById(R.id.txtJSON);
+
+                /*
                 // Launch the second activity
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-
-                startActivity(intent);
+                startActivity(intent);*/
             }
 
         });
     }
 
-    /*@Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+    private class JsonTask extends AsyncTask<String, String, String> {
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            pd = new ProgressDialog(MainActivity.this);
+            pd.setMessage("Please wait");
+            pd.setCancelable(false);
+            pd.show();
+        }
+
+        protected String doInBackground(String... params) {
+
+
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
+
+            try {
+                MyApplication application = (MyApplication)getApplication();
+                String apiURL = application.getURL();
+                URL url = new URL(apiURL);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+
+
+                InputStream stream = connection.getInputStream();
+
+                reader = new BufferedReader(new InputStreamReader(stream));
+
+                StringBuffer buffer = new StringBuffer();
+                String line = "";
+
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line+"\n");
+                    Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
+
+                }
+
+                return buffer.toString();
+
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if (pd.isShowing()){
+                pd.dismiss();
+            }
+            txtJson.setText(result);
+        }
     }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }*/
 }
