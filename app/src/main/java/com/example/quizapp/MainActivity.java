@@ -23,8 +23,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ArrayAdapter<CharSequence> adapter_category = ArrayAdapter.createFromResource(this, R.array.Category, android.R.layout.simple_spinner_item);
         adapter_category.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_category.setAdapter(adapter_category);
-        //spinner_category.setOnItemSelectedListener(this);
-        //String selectedCategoryNum = "blank";
         spinner_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -34,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 int categoryIndex = position + 9;
                 String selectedCategoryNum = Integer.toString(categoryIndex);
                 Log.d("Input", selectedCategoryNum);
-
 
             }
 
@@ -51,10 +48,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ArrayAdapter<CharSequence> adapter_difficulty = ArrayAdapter.createFromResource(this, R.array.Difficulty, android.R.layout.simple_spinner_item);
         adapter_difficulty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_difficulty.setAdapter(adapter_difficulty);
-        spinner_difficulty.setOnItemSelectedListener(this);
+        spinner_difficulty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                String selectedDifficulty = parent.getItemAtPosition(position).toString();
+                Log.d("Input", selectedDifficulty);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         
         // Stores user selected difficulty to a variable
+        // Will be used later to create URL
         String selected_difficulty = spinner_difficulty.getSelectedItem().toString();
         Log.d("Input", selected_difficulty);
 
