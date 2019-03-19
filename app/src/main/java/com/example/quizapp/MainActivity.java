@@ -116,12 +116,12 @@ public class MainActivity extends AppCompatActivity {
 
                 new JsonTask().execute(apiURL);
 
-                txtJson = (TextView) findViewById(R.id.txtJSON);
+                //txtJson = (TextView) findViewById(R.id.txtJSON);
 
-                /*
+
                 // Launch the second activity
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                startActivity(intent);*/
+                startActivity(intent);
             }
 
         });
@@ -193,7 +193,10 @@ public class MainActivity extends AppCompatActivity {
             if (pd.isShowing()){
                 pd.dismiss();
             }
-            txtJson.setText(result);
+            //txtJson.setText(result);
+            MyApplication application = (MyApplication)getApplication();
+            String jsonData = application.setJSON(result);
+            Log.d("Input", jsonData);
         }
     }
 }

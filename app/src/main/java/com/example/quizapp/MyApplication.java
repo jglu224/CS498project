@@ -6,6 +6,7 @@ public class MyApplication extends Application{
     private String selectedCategoryNum = "9";
     private String selectedDifficulty = "easy";
     private String apiURL;
+    private String jsonData;
 
     public String getCategory() {
         return selectedCategoryNum;
@@ -32,6 +33,15 @@ public class MyApplication extends Application{
     public String setURL(String apiURL) {
         this.apiURL = apiURL;
         return apiURL;
+    }
+
+    public String getJSON() {
+        return jsonData;
+    }
+
+    public String setJSON(String jsonData) {
+        this.jsonData = jsonData;
+        return jsonData;
     }
 
 }
