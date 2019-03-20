@@ -118,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
 
                 //txtJson = (TextView) findViewById(R.id.txtJSON);
 
-
                 // Launch the second activity
                 // Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 // startActivity(intent);

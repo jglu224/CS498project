@@ -101,7 +101,7 @@ public class SecondActivity extends AppCompatActivity {
 
                     has_answered = false;
                 }
-            }, 1000);
+            }, 2000);
 
                     }
     }

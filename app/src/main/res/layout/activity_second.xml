@@ -68,7 +68,18 @@
             android:text="@string/answer4"
             android:onClick="onRadioButtonClicked"/>
 
+
     </RadioGroup>
+
+   <!-- <Button
+        android:id="@+id/nextQuestion"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/radio_group"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="182dp"
+        android:text="Next" />-->
+
 
 
 </android.support.constraint.ConstraintLayout>

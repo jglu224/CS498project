@@ -70,9 +70,10 @@
         android:text="@string/start_button" />
 
 
-    <TextView
+   <TextView
         android:id="@+id/txtJSON"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
 
 </RelativeLayout>
