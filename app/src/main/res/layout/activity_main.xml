@@ -13,11 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/select_category"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="91dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/trivia_app_name"
         android:textAlignment="center"
         android:textColor="#4B4B4B"
-        android:textSize="50sp" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/select_category"
