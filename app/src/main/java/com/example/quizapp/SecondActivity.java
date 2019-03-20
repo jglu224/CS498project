@@ -16,6 +16,7 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -76,12 +77,16 @@ public class SecondActivity extends AppCompatActivity {
 
             if (questions.get(current_question).is_correct(answer)) {
                 button.setTextColor(Color.parseColor("#00BB00"));
+
                 score++;
+                Toast.makeText(SecondActivity.this, "Correct! Good Job!", Toast.LENGTH_SHORT).show();
+
             } else {
 
                 button.setTextColor(Color.parseColor("#BB0000"));
 
                 String correct_answer = questions.get(current_question).get_correct_answer();
+                Toast.makeText(SecondActivity.this, "Sorry! That's Incorrect!", Toast.LENGTH_SHORT).show();
 
                 for (int i = 0; i < radio_group.getChildCount(); i++) {
                     if (((RadioButton) radio_group.getChildAt(i)).getText() == questions.get(current_question).get_correct_answer()) {
