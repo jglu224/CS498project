@@ -30,6 +30,8 @@ public class Parser {
 
             JSONArray json_questions = this.obj.getJSONArray("results");
 
+            Log.d(getClass().getName(), "JSON Array Size = " + json_questions.length());
+
             for (int i = 0; i < json_questions.length(); i++) {
 
                 JSONObject current_obj = json_questions.getJSONObject(i);
@@ -49,9 +51,9 @@ public class Parser {
                         incorrect_questions);
 
                 questions.add(current_question);
-
-                return(questions);
             }
+
+            return(questions);
         }
         catch (JSONException e) {
             Log.e(null, "JSON ERROR.", e);
