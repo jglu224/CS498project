@@ -27,8 +27,11 @@ public class Question {
     }
 
     public String get_question_text() {
-
         return this.text;
+    }
+
+    public String get_correct_answer() {
+        return this.correct_answer;
     }
 
     public ArrayList<String> get_scrambled_answers() {
