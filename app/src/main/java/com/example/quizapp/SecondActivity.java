@@ -1,12 +1,18 @@
 package com.example.quizapp;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -19,6 +25,7 @@ public class SecondActivity extends AppCompatActivity {
     //String json_data = application.getJSON();
 
     int current_question = 0;
+    int score = 0;
 
     Bundle extras;
 
@@ -52,12 +59,12 @@ public class SecondActivity extends AppCompatActivity {
         update_question(current_question);
     }
 
-    public void onRadioButtonClicked(View view) {
+    public void onRadioButtonClicked(final View view) {
 
 
         if(!has_answered) {
 
-            //has_answered = true;
+            has_answered = true;
 
             RadioGroup radio_group = (RadioGroup) findViewById(R.id.radio_group);
 
@@ -69,6 +76,7 @@ public class SecondActivity extends AppCompatActivity {
 
             if (questions.get(current_question).is_correct(answer)) {
                 button.setTextColor(Color.parseColor("#00BB00"));
+                score++;
             } else {
 
                 button.setTextColor(Color.parseColor("#BB0000"));
@@ -91,15 +99,19 @@ public class SecondActivity extends AppCompatActivity {
 
                     RadioGroup radio_group = (RadioGroup) findViewById(R.id.radio_group);
 
-                    current_question += 1;
+                    current_question++;
 
                     for (int i = 0; i < radio_group.getChildCount(); i++) {
                         ((RadioButton) radio_group.getChildAt(i)).setTextColor(Color.parseColor("#000000"));
                     }
 
-                    update_question(current_question);
-
-                    has_answered = false;
+                    if(current_question < questions.size()) {
+                        update_question(current_question);
+                        has_answered = false;
+                    }
+                    else {
+                        show_score(view);
+                    }
                 }
             }, 1000);
 
@@ -123,5 +135,33 @@ public class SecondActivity extends AppCompatActivity {
                 ((RadioButton) radio_group.getChildAt(i)).setText(answers.get(i));
             }
         }
+    }
+
+    private void show_score(View view) {
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_window, null);
+
+        // create the popup window
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        ((TextView)popupWindow.getContentView().findViewById(R.id.score_popup)).setText("Score: " + score + "/" + questions.size() + "\n Tap to Proceed");
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        // dismiss the popup window when touched
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                finish();
+                return true;
+            }
+        });
     }
 }
