@@ -59,7 +59,5 @@ public class Parser {
             Log.e(null, "JSON ERROR.", e);
             return null;
         }
-
-        return null;
     }
 }
