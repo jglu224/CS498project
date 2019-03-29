@@ -121,7 +121,7 @@ public class SecondActivity extends AppCompatActivity {
                         show_score(view);
                     }
                 }
-            }, 1000);
+            }, 2000);
 
                     }
     }
