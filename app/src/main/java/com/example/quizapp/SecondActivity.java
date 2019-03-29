@@ -38,6 +38,8 @@ public class SecondActivity extends AppCompatActivity {
 
     Boolean has_answered = false;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,7 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     public void onRadioButtonClicked(final View view) {
+
 
 
         if(!has_answered) {
