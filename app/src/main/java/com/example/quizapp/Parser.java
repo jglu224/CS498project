@@ -5,21 +5,50 @@ import java.lang.String;
 import org.json.*;
 import android.util.Log;
 
+import static java.lang.Character.getNumericValue;
+import static java.lang.Character.isDigit;
+import static java.lang.Character.isLetter;
+
 public class Parser {
 
     String data;
     JSONObject obj;
 
+    final int FS_REG = 0;
+    final int FS_CODE = 1;
+
+    Map<String, Character> map = new HashMap<>();
+
     Parser(String data) {
 
+        populate_char_map();
+
+        make_json_object(data);
+
+    }
+
+    Parser() {
+        populate_char_map();
+    }
+
+    private void populate_char_map() {
+        map.put("quot", '\"');
+
+    }
+
+    public void make_json_object(String data) {
+
+        this.data = data;
+
+        Log.d(getClass().getName(), data);
+
         try {
-            this.data = data;
-            this.obj = new JSONObject(data);
+            Log.d(getClass().getName(), "JSON String: " + this.data);
+            this.obj = new JSONObject(this.data);
         }
         catch (JSONException e) {
-            Log.e(null, "JSON ERROR.", e);
+            Log.e(null, "PARSER CREATION: JSON ERROR. ", e);
         }
-
     }
 
     public ArrayList<Question> generate_questions() {
@@ -40,14 +69,14 @@ public class Parser {
                 JSONArray json_inquestions = current_obj.getJSONArray("incorrect_answers");
 
                 for (int j = 0; j < json_inquestions.length(); j++) {
-                    incorrect_questions.add(json_inquestions.getString(j));
+                    incorrect_questions.add(remove_html_special_chars(json_inquestions.getString(j)));
                 }
 
-                current_question = new Question(current_obj.getString("question"),
-                        current_obj.getString("category"),
-                        current_obj.getString("type"),
-                        current_obj.getString("difficulty"),
-                        current_obj.getString("correct_answer"),
+                current_question = new Question(remove_html_special_chars(current_obj.getString("question")),
+                        remove_html_special_chars(current_obj.getString("category")),
+                        remove_html_special_chars(current_obj.getString("type")),
+                        remove_html_special_chars(current_obj.getString("difficulty")),
+                        remove_html_special_chars(current_obj.getString("correct_answer")),
                         incorrect_questions);
 
                 questions.add(current_question);
@@ -60,4 +89,61 @@ public class Parser {
             return null;
         }
     }
+
+    private String remove_html_special_chars(String data) {
+
+        String code = "";
+        int state = FS_REG;
+
+        char current;
+
+        String stripped = "";
+
+        for(int i = 0; i < data.length(); i++) {
+
+            current = data.charAt(i);
+
+            if(current == '&' && state == FS_REG) {
+                state = FS_CODE;
+            }
+            else if(current == ';' && state == FS_CODE) {
+                state = FS_REG;
+                stripped += decipher_code(code);
+                code = "";
+            }
+            else if(state == FS_REG) {
+                stripped += current;
+            }
+            else if(state == FS_CODE && (isDigit(current) || isLetter(current) || (current == '#'))) {
+                code += current;
+            }
+        }
+
+        return stripped;
+    }
+
+    private char decipher_code(String code) {
+
+        if(code.charAt(0) == '#') {
+            code = code.substring(1, code.length());
+            int integer_code = Integer.parseInt(code);
+            return (char)integer_code;
+        }
+        else {
+            if(map.containsKey(code)) {
+                return map.get(code);
+            }
+            else {
+                return ' ';
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
