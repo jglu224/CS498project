@@ -21,18 +21,34 @@ public class Parser {
 
     Parser(String data) {
 
+        populate_char_map();
+
+        make_json_object(data);
+
+    }
+
+    Parser() {
+        populate_char_map();
+    }
+
+    private void populate_char_map() {
         map.put("quot", '\"');
+
+    }
+
+    public void make_json_object(String data) {
+
+        this.data = data;
 
         Log.d(getClass().getName(), data);
 
         try {
-            this.data = remove_html_special_chars(data);
+            Log.d(getClass().getName(), "JSON String: " + this.data);
             this.obj = new JSONObject(this.data);
         }
         catch (JSONException e) {
-            Log.e(null, "JSON ERROR.", e);
+            Log.e(null, "PARSER CREATION: JSON ERROR. ", e);
         }
-
     }
 
     public ArrayList<Question> generate_questions() {
@@ -53,14 +69,14 @@ public class Parser {
                 JSONArray json_inquestions = current_obj.getJSONArray("incorrect_answers");
 
                 for (int j = 0; j < json_inquestions.length(); j++) {
-                    incorrect_questions.add(json_inquestions.getString(j));
+                    incorrect_questions.add(remove_html_special_chars(json_inquestions.getString(j)));
                 }
 
-                current_question = new Question(current_obj.getString("question"),
-                        current_obj.getString("category"),
-                        current_obj.getString("type"),
-                        current_obj.getString("difficulty"),
-                        current_obj.getString("correct_answer"),
+                current_question = new Question(remove_html_special_chars(current_obj.getString("question")),
+                        remove_html_special_chars(current_obj.getString("category")),
+                        remove_html_special_chars(current_obj.getString("type")),
+                        remove_html_special_chars(current_obj.getString("difficulty")),
+                        remove_html_special_chars(current_obj.getString("correct_answer")),
                         incorrect_questions);
 
                 questions.add(current_question);
