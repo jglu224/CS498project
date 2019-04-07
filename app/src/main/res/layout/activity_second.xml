@@ -33,7 +33,7 @@
 
         <RadioButton
             android:id="@+id/button1"
-            android:padding="10dp"
+            android:padding="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/question"
@@ -42,7 +42,7 @@
             android:onClick="onRadioButtonClicked"/>
         <RadioButton
             android:id="@+id/button2"
-            android:padding="10dp"
+            android:padding="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button1"
@@ -52,7 +52,7 @@
 
         <RadioButton
             android:id="@+id/button3"
-            android:padding="10dp"
+            android:padding="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button2"
@@ -62,7 +62,7 @@
 
         <RadioButton
             android:id="@+id/button4"
-            android:padding="10dp"
+            android:padding="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button3"
