@@ -19,6 +19,8 @@ public class Parser {
 
     Map<String, Character> map = new HashMap<>();
 
+    Boolean JSON_Failure = false;
+
     Parser(String data) {
 
         populate_char_map();
@@ -45,10 +47,15 @@ public class Parser {
         try {
             Log.d(getClass().getName(), "JSON String: " + this.data);
             this.obj = new JSONObject(this.data);
+
+            JSON_Failure = (this.obj.getInt("response_code") != 0);
         }
         catch (JSONException e) {
             Log.e(null, "PARSER CREATION: JSON ERROR. ", e);
         }
+
+        if(JSON_Failure)
+            Log.d(getClass().getName(), "WARNING: JSON Object not created correctly!");
     }
 
     public ArrayList<Question> generate_questions() {
@@ -88,6 +95,10 @@ public class Parser {
             Log.e(null, "JSON ERROR.", e);
             return null;
         }
+    }
+
+    public Boolean json_failure() {
+        return JSON_Failure;
     }
 
     private String remove_html_special_chars(String data) {
