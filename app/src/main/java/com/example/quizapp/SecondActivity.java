@@ -110,7 +110,7 @@ public class SecondActivity extends AppCompatActivity {
                     current_question++;
 
                     for (int i = 0; i < radio_group.getChildCount(); i++) {
-                        ((RadioButton) radio_group.getChildAt(i)).setTextColor(Color.parseColor("#000000"));
+                        ((RadioButton) radio_group.getChildAt(i)).setTextColor(Color.parseColor("#ffffff"));
                     }
 
                     if(current_question < questions.size()) {
