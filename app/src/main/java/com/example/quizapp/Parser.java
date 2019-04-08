@@ -35,7 +35,23 @@ public class Parser {
 
     private void populate_char_map() {
         map.put("quot", '\"');
-
+        map.put("rsquo", '\'');
+        map.put("shy", ' ');
+        map.put("amp", '&');
+        map.put("ldquo", '\"');
+        map.put("hellip", '…');
+        map.put("rdquo", '\"');
+        map.put("ocirc", 'ô');
+        map.put("iacute", 'í');
+        map.put("oacute", 'ó');
+        map.put("Eacute", 'É');
+        map.put("aring", 'å');
+        map.put("auml", 'ä');
+        map.put("Auml", 'Ä');
+        map.put("ouml", 'ö');
+        map.put("Ouml", 'Ö');
+        map.put("uuml", 'ü');
+        map.put("Uuml", 'Ü');
     }
 
     public void make_json_object(String data) {
@@ -145,7 +161,8 @@ public class Parser {
                 return map.get(code);
             }
             else {
-                return ' ';
+                Log.d(getClass().getName(), "Unknown character code encountered: " + code);
+                return '?';
             }
         }
     }
