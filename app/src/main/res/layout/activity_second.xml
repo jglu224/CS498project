@@ -12,7 +12,6 @@
         android:layout_above="@id/radio_group"
         android:layout_centerVertical="true"
         android:padding="30dp"
-        android:text="Here is where the question will display!"
         android:textAlignment="center"
         android:textColor="#0000CD"
         android:textSize="20dp"
@@ -38,7 +37,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/question"
             android:layout_centerHorizontal="true"
-            android:text="@string/answer1"
             android:onClick="onRadioButtonClicked"/>
         <RadioButton
             android:id="@+id/button2"
@@ -47,7 +45,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/button1"
             android:layout_centerHorizontal="true"
-            android:text="@string/answer2"
             android:onClick="onRadioButtonClicked"/>
 
         <RadioButton
@@ -57,7 +54,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/button2"
             android:layout_centerHorizontal="true"
-            android:text="@string/answer3"
             android:onClick="onRadioButtonClicked"/>
 
         <RadioButton
@@ -67,7 +63,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/button3"
             android:layout_centerHorizontal="true"
-            android:text="@string/answer4"
             android:onClick="onRadioButtonClicked"/>
 
 
