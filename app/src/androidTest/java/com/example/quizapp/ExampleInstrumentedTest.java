@@ -83,4 +83,18 @@ public class ExampleInstrumentedTest {
         onData(allOf(is(instanceOf(String.class)), is(hard))).perform(click());
         //onView(withId(R.id.spinner_category)).check(matches(withSpinnerText(containsString(music))));
     }
+
+    @Test
+    public void testMusicEasy(){
+        String music = "Music";
+        String easy = "Easy";
+        onView(withId(R.id.spinner_category)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is(music))).perform(click());
+
+        onView(withId(R.id.spinner_difficulty)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is(easy))).perform(click());
+
+        onView(withId(R.id.start_quiz)).perform(click());
+    }
+
 }
