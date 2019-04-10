@@ -13,7 +13,7 @@
         android:layout_centerVertical="true"
         android:padding="30dp"
         android:textAlignment="center"
-        android:textColor="#0000CD"
+        android:textColor="#A8A8FF"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
