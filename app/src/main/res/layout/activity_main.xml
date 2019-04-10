@@ -13,10 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/select_category"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
         android:text="@string/trivia_app_name"
         android:textAlignment="center"
-        android:textColor="#fff"
+        android:textColor="#A8A8FF"
         android:textSize="30sp" />
 
     <TextView
@@ -25,10 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/spinner_category"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="53dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/select_category"
         android:textAlignment="center"
-        android:textColor="#fff"
+        android:textColor="#A8A8FF"
         android:textSize="35sp" />
 
     <Spinner
@@ -37,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/select_difficulty"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="57dp"
+        android:layout_marginBottom="20dp"
         android:textAlignment="center"></Spinner>
 
     <TextView
@@ -49,7 +48,7 @@
         android:layout_marginBottom="20dp"
         android:text="@string/select_difficulty"
         android:textAlignment="center"
-        android:textColor="#fff"
+        android:textColor="#A8A8FF"
         android:textSize="35sp" />
 
     <Spinner
@@ -66,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/spinner_difficulty"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="182dp"
+        android:layout_marginTop="100dp"
         android:text="@string/start_button" />
 
 
