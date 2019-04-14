@@ -24,6 +24,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.LinkedHashMap;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,12 +46,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+               // String[] keys = getResources().getStringArray(R.array.Category);
+                String[] values = getResources().getStringArray(R.array.CatValues);
+
                 // Stores the user selected category into a string
                 // Will be used later to build URL
-                int categoryIndex = position + 9;
                 MyApplication application = (MyApplication)getApplication();
-                String selectedCategoryNum = application.setCategory(Integer.toString(categoryIndex));
-                Log.d("Input", selectedCategoryNum);
+                String selectedCategoryNum = application.setCategory(values[position]);
+                //Log.d("Input", selectedCategoryNum);
 
             }
 
