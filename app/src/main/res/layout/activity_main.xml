@@ -66,6 +66,8 @@
         android:layout_below="@id/spinner_difficulty"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
+        android:textColor = "#A8A8FF"
+        android:background="#E6F6FF"
         android:text="@string/start_button" />
 
 
